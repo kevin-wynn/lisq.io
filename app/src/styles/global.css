@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default theme: Paper (light) */
+:root {
+  --s-50: 28 25 23;
+  --s-100: 87 83 78;
+  --s-200: 120 113 108;
+  --s-300: 168 162 158;
+  --s-400: 214 211 209;
+  --s-500: 231 229 228;
+  --s-600: 240 239 237;
+  --s-700: 245 244 242;
+  --s-800: 250 249 247;
+  --s-900: 253 252 251;
+  --s-950: 255 255 255;
+  --t-50: 238 242 255;
+  --t-100: 224 231 255;
+  --t-200: 199 210 254;
+  --t-300: 165 180 252;
+  --t-400: 129 140 248;
+  --t-500: 99 102 241;
+  --t-600: 79 70 229;
+  --t-700: 67 56 202;
+  --t-800: 55 48 163;
+  --t-900: 49 46 129;
+  --t-950: 30 27 75;
+}
+
+@layer base {
+  * {
+    @apply border-dark-500;
+  }
+
+  body {
+    @apply bg-dark-900 text-dark-50 font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-300;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-tactical-500 hover:bg-tactical-600 text-white font-medium text-sm rounded-lg transition-all duration-150 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 text-dark-100 hover:text-dark-50 hover:bg-dark-600 text-sm rounded-lg transition-all duration-150;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-3 py-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 text-sm rounded-lg transition-all duration-150;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 bg-dark-950 border border-dark-500 rounded-lg text-dark-50 placeholder-dark-300 text-sm focus:outline-none focus:ring-2 focus:ring-tactical-500/20 focus:border-tactical-400 transition-all;
+  }
+
+  .card {
+    @apply bg-dark-950 border border-dark-500 rounded-xl p-4;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full;
+  }
+
+  .badge-critical {
+    @apply badge bg-red-500/15 text-red-400 border border-red-500/25;
+  }
+
+  .badge-high {
+    @apply badge bg-orange-500/15 text-orange-400 border border-orange-500/25;
+  }
+
+  .badge-medium {
+    @apply badge bg-amber-500/15 text-amber-400 border border-amber-500/25;
+  }
+
+  .badge-low {
+    @apply badge bg-dark-500/20 text-dark-200 border border-dark-500/30;
+  }
+}
+
+/* TipTap Editor Styles */
+.tiptap-editor {
+  @apply text-dark-50 leading-relaxed;
+}
+
+.tiptap-editor:focus {
+  @apply outline-none;
+}
+
+.tiptap-editor h1 {
+  @apply text-2xl font-semibold text-dark-50 mt-6 mb-3;
+}
+
+.tiptap-editor h2 {
+  @apply text-xl font-semibold text-dark-50 mt-5 mb-2;
+}
+
+.tiptap-editor h3 {
+  @apply text-lg font-medium text-dark-50 mt-4 mb-2;
+}
+
+.tiptap-editor p {
+  @apply text-sm leading-relaxed mb-3 text-dark-100;
+}
+
+.tiptap-editor ul {
+  @apply list-disc pl-5 mb-3 text-sm text-dark-100;
+}
+
+.tiptap-editor ol {
+  @apply list-decimal pl-5 mb-3 text-sm text-dark-100;
+}
+
+.tiptap-editor li {
+  @apply mb-1;
+}
+
+.tiptap-editor li p {
+  @apply mb-0;
+}
+
+.tiptap-editor strong {
+  @apply font-semibold text-dark-50;
+}
+
+.tiptap-editor em {
+  @apply italic;
+}
+
+.tiptap-editor u {
+  @apply underline;
+}
+
+.tiptap-editor p.is-editor-empty:first-child::before {
+  @apply text-dark-300 float-left h-0 pointer-events-none;
+  content: attr(data-placeholder);
+}
+
+.tiptap-editor a,
+.tiptap-link {
+  @apply text-tactical-500 underline decoration-tactical-500/40 hover:decoration-tactical-500 transition-colors cursor-pointer;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "lisq",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "marketing",
+    "app"
+  ],
+  "scripts": {
+    "dev:marketing": "npm run dev --workspace=marketing",
+    "dev:app": "npm run dev --workspace=app",
+    "build:marketing": "npm run build --workspace=marketing",
+    "build:app": "npm run build --workspace=app",
+    "db:push": "npm run db:push --workspace=app",
+    "db:studio": "npm run db:studio --workspace=app",
+    "docker:login": "docker login",
+    "docker:build": "docker build -t lukevinskywynn/lisq:latest .",
+    "docker:tag": "docker tag lukevinskywynn/lisq:latest lukevinskywynn/lisq:$npm_package_version",
+    "docker:push": "docker push lukevinskywynn/lisq:latest && docker push lukevinskywynn/lisq:$npm_package_version",
+    "docker:release": "npm run docker:build && npm run docker:tag && npm run docker:push",
+    "deploy:marketing": "npm run build --workspace=marketing && cd marketing && npx wrangler pages deploy dist"
+  }
+}

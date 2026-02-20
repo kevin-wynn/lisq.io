@@ -1,0 +1,37 @@
+# ─── LISQ Docker Compose ─────────────────────────────────────────
+#
+# Usage:
+#   docker compose up -d                              # default: ./data, port 4321
+#   DATA_PATH=/path/to/data docker compose up -d      # custom data location
+#   DATA_PATH=~/lisq-data docker compose up -d        # home directory
+#   DATA_PATH=/mnt/nas/lisq docker compose up -d      # NAS / external drive
+#
+# Your SQLite database is stored at DATA_PATH/lisq.db on the host.
+# Data persists across container restarts, rebuilds, and upgrades.
+#
+# Auth: Set LISQ_USERNAME and LISQ_PASSWORD to enable login.
+#       If not set, the app runs without authentication (open access).
+# ─────────────────────────────────────────────────────────────────
+
+services:
+  lisq:
+    image: lukevinskywynn/lisq:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-4321}:${PORT:-4321}"
+    volumes:
+      # Mount host DATA_PATH to /data inside the container.
+      # Default: ./data in the project root.
+      - ${DATA_PATH:-./data}:/data
+    environment:
+      # Server port (default: 4321)
+      - PORT=${PORT:-4321}
+      - HOST=0.0.0.0
+      # Path to SQLite database inside the container.
+      - DATABASE_PATH=/data/lisq.db
+      # Auth credentials — set both to enable login, or leave empty for open access
+      - LISQ_USERNAME=${LISQ_USERNAME:-}
+      - LISQ_PASSWORD=${LISQ_PASSWORD:-}
+    restart: unless-stopped

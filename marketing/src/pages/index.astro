@@ -1,0 +1,16 @@
+---
+import { Features } from "../components/Features";
+import { Footer } from "../components/Footer";
+import { Hero } from "../components/Hero";
+import { Navbar } from "../components/Navbar";
+import { ThemeShowcase } from "../components/ThemeShowcase";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <Navbar client:load />
+  <Hero client:load />
+  <Features client:load />
+  <ThemeShowcase client:load />
+  <Footer client:load />
+</Layout>
