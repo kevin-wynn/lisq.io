@@ -93,7 +93,7 @@ export function Features() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Everything you need, nothing you don't
+            Simple by design, yours by default
           </h2>
           <p className="text-dark-100 text-lg max-w-xl mx-auto">
             Opinionated about simplicity. No accounts, no cloud sync, no
