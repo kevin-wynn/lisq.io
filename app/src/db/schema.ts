@@ -54,6 +54,7 @@ export const items = sqliteTable("items", {
   notes: text("notes"),
   quantity: integer("quantity"),
   priority: text("priority", { enum: ["low", "medium", "high", "critical"] }),
+  color: text("color"),
   sortOrder: integer("sort_order").notNull().default(0),
   createdAt: integer("created_at", { mode: "timestamp" })
     .notNull()
