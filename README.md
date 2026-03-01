@@ -182,6 +182,22 @@ LISQ ships with 20+ built-in themes. Switch anytime from the sidebar.
 
 **Dark**: One Dark Pro, Dracula, GitHub Dark, Monokai Pro, Solarized Dark, Nord, Catppuccin Mocha, Tokyo Night, Gruvbox Dark, Palenight, Ayu Dark, Synthwave '84, Rosé Pine, Vitesse Dark
 
+## Docker Build & Publish
+
+```bash
+# Log in to Docker Hub (if not already)
+docker login
+
+# Create a buildx builder (one-time setup)
+docker buildx create --name lisq-builder --use
+
+# Build and push multi-platform image
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t lukevinskywynn/lisq:latest \
+  -t lukevinskywynn/lisq:1.0.0 \
+  --push .
+```
+
 ## License
 
 MIT
