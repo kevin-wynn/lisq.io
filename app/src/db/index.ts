@@ -94,6 +94,16 @@ try {
   );
 } catch (_) {}
 
+// Migration: add color column to items for existing databases
+try {
+  const itemCols2 = sqlite.prepare("PRAGMA table_info(items)").all() as {
+    name: string;
+  }[];
+  if (!itemCols2.some((c) => c.name === "color")) {
+    sqlite.exec("ALTER TABLE items ADD COLUMN color TEXT");
+  }
+} catch (_) {}
+
 export const db = drizzle(sqlite, { schema });
 
 // Provision user from env vars on startup (async, fire-and-forget)

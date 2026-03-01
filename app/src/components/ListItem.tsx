@@ -99,11 +99,16 @@ export function ListItem({
   return (
     <>
       <div
-        className={`group rounded-xl border transition-all duration-200 ${
+        className={`group rounded-xl border transition-all duration-200 overflow-hidden ${
           item.checked
             ? "bg-dark-800/50 border-dark-600"
             : "bg-dark-700 border-dark-500 hover:border-dark-400"
         }`}
+        style={
+          (item as any).color && !item.checked
+            ? { borderLeftColor: (item as any).color, borderLeftWidth: "3px" }
+            : undefined
+        }
       >
         <div
           className="flex items-center gap-3 px-4 py-3 cursor-pointer"

@@ -10,6 +10,18 @@ const PRIORITY_OPTIONS = [
   { value: "critical", label: "Critical" },
 ];
 
+const ITEM_COLORS = [
+  { value: "", label: "None" },
+  { value: "#6366f1", label: "Indigo" },
+  { value: "#8b5cf6", label: "Violet" },
+  { value: "#ec4899", label: "Pink" },
+  { value: "#f97316", label: "Orange" },
+  { value: "#06b6d4", label: "Cyan" },
+  { value: "#10b981", label: "Emerald" },
+  { value: "#78716c", label: "Stone" },
+  { value: "#94a3b8", label: "Slate" },
+];
+
 interface EditItemModalProps {
   item: Item;
   onClose: () => void;
@@ -21,6 +33,7 @@ export function EditItemModal({ item, onClose, onSave }: EditItemModalProps) {
   const [quantity, setQuantity] = useState(String(item.quantity || 1));
   const [priority, setPriority] = useState(item.priority || "");
   const [notes, setNotes] = useState(item.notes || "");
+  const [color, setColor] = useState((item as any).color || "");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +44,7 @@ export function EditItemModal({ item, onClose, onSave }: EditItemModalProps) {
       quantity: !isNaN(qty) && qty > 0 ? qty : null,
       priority: priority || null,
       notes: notes.trim() || null,
+      color: color || null,
     } as any);
     onClose();
   };
@@ -100,6 +114,44 @@ export function EditItemModal({ item, onClose, onSave }: EditItemModalProps) {
                 >
                   {p.label}
                 </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Color */}
+          <div>
+            <label className="block text-xs font-medium text-dark-100 uppercase tracking-wider mb-2">
+              Color <span className="text-dark-300">(optional)</span>
+            </label>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setColor("")}
+                className={`w-7 h-7 rounded-full border-2 transition-all flex items-center justify-center ${
+                  color === ""
+                    ? "border-tactical-500 scale-110"
+                    : "border-dark-500 hover:border-dark-400"
+                }`}
+                title="No color"
+              >
+                <span className="text-dark-300 text-[10px]">✕</span>
+              </button>
+              {ITEM_COLORS.filter((c) => c.value).map((c) => (
+                <button
+                  key={c.value}
+                  type="button"
+                  onClick={() => setColor(c.value)}
+                  title={c.label}
+                  className={`w-7 h-7 rounded-full transition-all ${
+                    color === c.value ? "scale-110" : "hover:scale-105"
+                  }`}
+                  style={{
+                    backgroundColor: c.value,
+                    ...(color === c.value
+                      ? { boxShadow: `0 0 0 2px #1c1917, 0 0 0 4px ${c.value}` }
+                      : {}),
+                  }}
+                />
               ))}
             </div>
           </div>
